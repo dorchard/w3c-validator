@@ -96,6 +96,11 @@ if __name__ == '__main__':
                 message('errors: %d' % errorcount)
             if warningcount > 0:
                 message('warnings: %d' % warningcount)
+            # Output CSS error messages if we have them
+            if 'errors' in result['cssvalidation']:
+              for msg in result['cssvalidation']['errors']:
+                  message('%(type)s: %(message)s' % msg)
+
         else:
             for msg in result['messages']:
                 if 'lastLine' in msg:
