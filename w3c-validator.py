@@ -99,7 +99,10 @@ if __name__ == '__main__':
             # Output CSS error messages if we have them
             if 'errors' in result['cssvalidation']:
               for msg in result['cssvalidation']['errors']:
-                  message('%(type)s: %(message)s' % msg)
+                  if 'line' in msg:
+                    message('%(type)s: line %(line)d: %(message)s' % msg)
+                  else:
+                    message('%(type)s: %(message)s' % msg)
 
         else:
             for msg in result['messages']:
